@@ -33,7 +33,10 @@ public class YAJSONObject: SequenceType {
             if self.index + 1 < 0 {
                 return nil
             }
-            return self[self.index++]
+            if let value = self.value as? [AnyObject] where self.index < value.count {
+                return self[self.index++]
+            }
+            return nil
         }
     }
 
