@@ -27,8 +27,9 @@ public class YAJSONObject: SequenceType {
         return (value as? NSDictionary).map { YAJSONObject($0[key]) } ?? YAJSONObject(nil)
     }
 
-    public func generate() -> GeneratorOf<YAJSONObject> {
-        return GeneratorOf<YAJSONObject> {
+    public func generate() -> AnyGenerator<YAJSONObject> {
+        index = 0
+        return anyGenerator {
             if self.index + 1 < 0 {
                 return nil
             }
